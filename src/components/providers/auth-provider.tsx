@@ -6,7 +6,7 @@ import {
   onAuthStateChanged, 
   signOut, 
   GoogleAuthProvider, 
-  signInWithPopup,
+  signInWithRedirect,
   type User
 } from "firebase/auth";
 import { app } from "@/lib/firebase";
@@ -40,8 +40,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signInWithGoogle = async () => {
     setLoading(true);
     try {
-      await signInWithPopup(auth, provider);
-      toast({ title: "Signed in successfully!" });
+      // Set auth domain before redirect
+      auth.tenantId = auth.app.options.authDomain || null;
+      await signInWithRedirect(auth, provider);
     } catch (error: any) {
       console.error("Sign-in error:", error);
       toast({
@@ -50,7 +51,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         variant: "destructive",
       });
     } finally {
-      setLoading(false);
+      // setLoading(false) is not called here as the page will redirect
     }
   };
 
