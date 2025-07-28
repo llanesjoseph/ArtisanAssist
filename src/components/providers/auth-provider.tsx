@@ -2,19 +2,13 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { 
-  getAuth, 
   onAuthStateChanged, 
   signOut, 
-  GoogleAuthProvider, 
   signInWithPopup,
-  signInWithCredential,
   type User
 } from "firebase/auth";
-import { app } from "@/lib/firebase";
+import { auth, googleProvider } from "@/lib/firebase-auth";
 import { useToast } from "@/hooks/use-toast";
-
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
 
 interface AuthContextType {
   user: User | null;
@@ -41,7 +35,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signInWithGoogle = async () => {
     setLoading(true);
     try {
-      await signInWithPopup(auth, provider);
+      await signInWithPopup(auth, googleProvider);
     } catch (error: any) {
       console.error("Sign-in error:", error);
       if (error.code !== 'auth/popup-closed-by-user') {
