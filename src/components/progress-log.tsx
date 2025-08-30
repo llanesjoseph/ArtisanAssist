@@ -121,7 +121,7 @@ export default function ProgressLog({ project, onProjectChange }: ProgressLogPro
                             <p className="mt-2 text-sm whitespace-pre-wrap">{log.note}</p>
                             {log.photoUrl && (
                                 <div className="mt-4 relative aspect-video w-full overflow-hidden rounded-md">
-                                    <Image src={log.photoUrl} alt="Progress" layout="fill" className="object-contain" />
+                                    <Image src={log.photoUrl} alt="Progress" layout="fill" className="object-contain" unoptimized />
                                 </div>
                             )}
                         </Card>

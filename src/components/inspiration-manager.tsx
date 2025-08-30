@@ -109,7 +109,7 @@ export default function InspirationManager({ project, onProjectChange }: Inspira
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
                     {project.inspirationPhotos?.map((photo, i) => (
                         <div key={i} className="group relative aspect-square overflow-hidden rounded-md">
-                            <Image src={photo} alt={`Inspiration ${i+1}`} layout="fill" className="object-cover" />
+                            <Image src={photo} alt={`Inspiration ${i+1}`} layout="fill" className="object-cover" unoptimized />
                              <div className="absolute inset-0 bg-black/50 opacity-0 transition-opacity group-hover:opacity-100 flex items-center justify-center gap-2">
                                 <Button size="icon" variant="ghost" className="text-white hover:bg-white/20" onClick={() => setCoverPhoto(photo)}>
                                     <Star className={`h-5 w-5 ${project.coverPhotoUrl === photo ? 'fill-yellow-400 text-yellow-400' : ''}`} />

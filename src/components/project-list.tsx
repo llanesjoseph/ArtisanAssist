@@ -81,6 +81,7 @@ function ProjectCard({ project }: { project: ProjectData }) {
                             fill
                             className="object-cover"
                             data-ai-hint="craft project"
+                            unoptimized
                         />
                     </div>
                      {project.progressLog && project.progressLog.length > 0 && (
